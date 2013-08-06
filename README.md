@@ -51,41 +51,41 @@ The following configuration would scan issues at https://github.com/you/repo_nam
  - rule two scans for "foo" in the title or body and adds the comment "This issue matched on foo" 
 
 
-	%YAML 1.2
-	---
-	Application:
-	  api_url: https://api.github.com
-	  wake_interval: 300
-	  access_token: PUT-A-PERSONAL-ACCESS-TOKEN-HERE
-	  comment_prefix:
-	    - "*This is an automated response to your ticket.*"
-	  repositories:
-	    you:
-	      repo_name:
-	        rule_one:
-	          strings:
-	            - string value 1
-	            - string value 2
-	          response:
-	            - This issue was matched on "string value 1" or "string value 2" in the issue title or body.
-	            - You can have multiple items to note in the comment response
-	          action:
-	            label:
-	              - pending review
-	        rule_two:
-	          strings:
-	            - foo
-	          response:
-	            - This issue matched on "foo"
+    %YAML 1.2
+    ---
+    Application:
+      api_url: https://api.github.com
+      wake_interval: 300
+      access_token: PUT-A-PERSONAL-ACCESS-TOKEN-HERE
+      comment_prefix:
+        - "*This is an automated response to your ticket.*"
+      repositories:
+        you:
+          repo_name:
+            rule_one:
+              strings:
+                - string value 1
+                - string value 2
+              response:
+                - This issue was matched on "string value 1" or "string value 2" in the issue title or body.
+                - You can have multiple items to note in the comment response
+              action:
+                label:
+                  - pending review
+            rule_two:
+              strings:
+                - foo
+              response:
+                - This issue matched on "foo"
 
-	Daemon:
-	    user: github_issue_autoresponder
-	    group: daemon
-	    pidfile: /var/run/github_issue_autoresponder.pid
+    Daemon:
+        user: github_issue_autoresponder
+        group: daemon
+        pidfile: /var/run/github_issue_autoresponder.pid
 
-	Logging:
-	  loggers:
-	    github_issue_autoresponder:
-	      handlers: [console]
-	      level: DEBUG
-	      propagate: true
+    Logging:
+      loggers:
+        github_issue_autoresponder:
+          handlers: [console]
+          level: DEBUG
+          propagate: true
