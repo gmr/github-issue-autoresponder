@@ -75,7 +75,10 @@ class Controller(clihelper.Controller):
                     string in issue['title'].lower()):
                     match = True
                     for line in self.repos[user][repo][stanza]['response']:
-                        comments.append(" - %s" % line.strip())
+                        if len(self.repos[user][repo][stanza]['response']) == 1:
+                            comments.append(line.strip())
+                        else:
+                            comments.append(" - %s" % line.strip())
         if comments:
             offset = 0
             for line in self.application_config['comment_prefix']:
