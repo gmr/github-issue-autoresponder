@@ -31,7 +31,7 @@ Running
 
 Configuration
 -------------
-The configuration file uses *YAML* syntax for its markup and **whitespace/indentation is important**. For more information on *YAML*, please visit http://yaml.org. A good resource for configuration lint checking is http://yamllint.com.
+The configuration file uses YAML syntax for its markup and **whitespace/indentation is important**. For more information on YAML, please visit http://yaml.org. A good resource for configuration lint checking is http://yamllint.com.
 
 The configuration is set per user/org and repository and may have multiple rules. Each rule has multiple sections: strings, response and action.
 
@@ -43,13 +43,14 @@ The configuration is set per user/org and repository and may have multiple rules
 
  To change how often the application will poll, edit the Application > wake_interval value in seconds. 
 
-Example
--------
+Example Configuration
+---------------------
 The following configuration would scan issues at https://github.com/you/repo_name running two rules:
 
  - rule_one scans for "string value 1" and "string value 2" and if found in the title or body of the issue, it will add two bullets from the response stanza of the config and it will add a "pending review" label.
  - rule two scans for "foo" in the title or body and adds the comment "This issue matched on foo" 
 
+File:
 
     %YAML 1.2
     ---
