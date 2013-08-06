@@ -1,0 +1,2 @@
+include etc/github_issue_autoresponder.initd
+include etc/github_issue_autoresponder.yml
