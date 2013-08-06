@@ -1,6 +1,5 @@
 from setuptools import setup
 import os
-import platform
 
 requirements = ['clihelper', 'requests']
 
@@ -23,7 +22,7 @@ with open('MANIFEST.in', 'w') as handle:
             handle.write('include %s\n' % filename)
 
 setup(name='github_issue_autoresponder',
-      version='1.0.0',
+      version='1.0.1',
       author='Gavin M. Roy',
       author_email='gavinmroy@gmail.com',
       py_modules=['github_issue_autoresponder'],
@@ -42,5 +41,5 @@ setup(name='github_issue_autoresponder',
           'Programming Language :: Python :: 2.6',
           'Programming Language :: Python :: 2.7',
           'Topic :: Utilities'],
-      entry_points={'console_scripts': scripts},      
+      entry_points={'console_scripts': scripts},
       zip_safe=True)
