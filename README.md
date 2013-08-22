@@ -58,8 +58,11 @@ File:
       api_url: https://api.github.com
       wake_interval: 300
       access_token: PUT-A-PERSONAL-ACCESS-TOKEN-HERE
-      comment_prefix:
-        - "*This is an automated response to your ticket.*"
+      comment:
+        prefix:
+          - "*This is an automated response to your ticket.*"
+        skip_users:
+          - LIST OF USERS
       repositories:
         you:
           repo_name:
