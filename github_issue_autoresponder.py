@@ -9,7 +9,9 @@ import requests
 import urllib
 import urlparse
 
-__version__ = '1.0.1'
+import pprint
+
+__version__ = '1.0.2'
 LOGGER = logging.getLogger(__name__)
 DESCRIPTION = 'Auto-respond to GitHub issues'
 
@@ -81,7 +83,7 @@ class Controller(clihelper.Controller):
                             comments.append(" - %s" % line.strip())
         if comments:
             offset = 0
-            for line in self.application_config['comment_prefix']:
+            for line in self.application_config['comments']['prefix']:
                 comments.insert(offset, line.strip())
                 offset += 1
             self.add_comment(user, repo, issue['number'], '\n'.join(comments))
@@ -92,20 +94,27 @@ class Controller(clihelper.Controller):
                     self.add_label(user, repo, issue['number'], label)
 
     def process_issues(self, user, repo):
-
         LOGGER.debug('URL: %s', self.issues_url(user, repo))
         response = self.session.get(self.issues_url(user, repo))
         if response.status_code != 200:
             LOGGER.error('Error getting issues for %s/%s (%s): %s',
                          user, repo, response.status_code, response.content)
             return
-
         for issue in response.json():
             if issue.get('comments'):
-                LOGGER.debug('Skipping issue #%s, already has comments',
-                             issue['number'])
-                continue
-            self.process_issue(user, repo, issue)
+                process = True
+                response = self.session.get(issue['comments_url'])
+                for comment in response.json():
+                    if (comment['user']['login'] in
+                            self.application_config['comments']['skip_users']):
+                        LOGGER.debug('Skipping issue #%s, already has comments '
+                                     'from %s', issue['number'],
+                                     comment['user']['login'])
+                        process = False
+                        break
+                if not process:
+                    continue
+            #self.process_issue(user, repo, issue)
 
     @property
     def repos(self):

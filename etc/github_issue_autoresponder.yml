@@ -4,8 +4,11 @@ Application:
   api_url: https://api.github.com
   wake_interval: 300
   access_token: PUT-A-PERSONAL-ACCESS-TOKEN-HERE
-  comment_prefix:
-    - "*This is an automated response to your ticket.*"
+  comments:
+    prefix:
+      - "*This is an automated response to your ticket.*"
+    skip_users:
+      - YOUR-GITHUB-USERS
   repositories:
     you:
       repo_name:
