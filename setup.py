@@ -22,7 +22,7 @@ with open('MANIFEST.in', 'w') as handle:
             handle.write('include %s\n' % filename)
 
 setup(name='github_issue_autoresponder',
-      version='1.0.1',
+      version='1.0.2',
       author='Gavin M. Roy',
       author_email='gavinmroy@gmail.com',
       py_modules=['github_issue_autoresponder'],
