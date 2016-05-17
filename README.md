@@ -1,5 +1,7 @@
 Github Issue Auto-Responder
 ===========================
+:boom:**Important**:boom: This project is deprecated and no longer maintained. If you'd like to take it over, please contact me.
+
 Polls GitHub project issues on a regular interval to look for issues *without comments*
 and tries to identify a proper response for the ticket, adding a comment and/or a
 label if so.
